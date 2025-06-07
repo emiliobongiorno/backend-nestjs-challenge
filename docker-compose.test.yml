@@ -2,9 +2,9 @@ version: '3.8'
 services:
   api:
     command: >
-      sh -c "npm run start:prod"
+      sh -c "npm run test:e2e"
     depends_on:
-      - db
+      - postgres
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,14 +12,14 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
-      - DATABASE_HOST=db
+      - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
       - DATABASE_NAME=user_management
       - DATABASE_SYNC=true
       - POKEMON_API_URL=https://pokeapi.co/api/v2
-  db:
+  postgres:
     image: postgres:latest
     container_name: user_management_db
     environment:

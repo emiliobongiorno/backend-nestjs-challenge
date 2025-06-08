@@ -12,6 +12,8 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/8k3vizU2BZP5r14QonA4hL/DU3GjxSXf6fxSPgerPXTW8/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/8k3vizU2BZP5r14QonA4hL/DU3GjxSXf6fxSPgerPXTW8/tree/main)
 
+[![Coverage Status](https://coveralls.io/repos/github/emiliobongiorno/backend-nestjs-challenge/badge.svg?branch=main)](https://coveralls.io/github/emiliobongiorno/backend-nestjs-challenge?branch=main)
+
 ## Pre-Requisites
 
 - Docker installed without SUDO Permission

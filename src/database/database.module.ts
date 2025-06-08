@@ -14,9 +14,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           return {
             type: 'postgres' as const,
             url,
-            ssl: {
-              rejectUnauthorized: false, // Required for Heroku
-            },
             entities: [__dirname + '/../**/*.entity{.ts,.js}'],
             synchronize: configService.get<boolean>('DATABASE_SYNC') || false,
           };

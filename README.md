@@ -8,6 +8,10 @@
 - Update User
 - Delete User
 
+## Deployed App Running on HEROKU
+
+- [SWAGGER](https://backend-nestjs-challenge-3336a6f13c46.herokuapp.com/api)
+
 ### Badges
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/8k3vizU2BZP5r14QonA4hL/DU3GjxSXf6fxSPgerPXTW8/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/8k3vizU2BZP5r14QonA4hL/DU3GjxSXf6fxSPgerPXTW8/tree/main)
@@ -20,12 +24,14 @@
 - Docker compose installed without SUDO
 - Ports free: 3000 and 5432
 
-## How to run the APP
+## How to run the APP Locally
 
 ```
 chmod 711 ./up_dev.sh
 ./up_dev.sh
 ```
+
+Env vars should be defined. To find an example of the values you can use .env.example
 
 ## How to run the tests
 
@@ -47,7 +53,7 @@ COVERALLS_REPO_TOKEN=0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU npm run test:cov
 - Error handling could be improved (I.E handle already existing user error)
 - A Seed migration would be useful to have an already working app with data
 - The ORM is being used with Synchronize instead of migrations. Migrations would be the best option
-- Deployment could be done
+- Coveralls token should not be included in git
 
 ## Techs
 
@@ -66,7 +72,3 @@ COVERALLS_REPO_TOKEN=0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU npm run test:cov
 ## Route
 
 - Local: [API Swagger](http://localhost:3000/api)
-
-## Env vars should be defined
-
-To find an example of the values you can use .env.example

@@ -4,23 +4,7 @@ version: 2.1
 orbs:
   node: circleci/node@5
 jobs:
-  test-node:
-    # Install node dependencies and run tests
-    executor: node/default
-    environment:
-      JEST_JUNIT_OUTPUT_DIR: ./test-results/
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          command: npm install jest-junit
-      - run:
-          name: Run tests
-          command: npm run test:e2e --ci --runInBand --reporters=default --reporters=jest-junit
-      - store_test_results:
-          path: ./test-results/
-  build-node:
+  build_and_test:
     docker:
       - image: cimg/node:22.16.0
         environment:
@@ -43,17 +27,12 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          command: npm run test:e2e
+      - run:
           command: npm run build
-      - run:
-          name: Create the ~/artifacts directory if it doesn't exist
-          command: mkdir -p ~/artifacts
-      # Copy output to artifacts dir
-      - run:
-          name: Copy artifacts
-          command: cp -R build dist public .output .next .docusaurus ~/artifacts 2>/dev/null || true
-      - store_artifacts:
-          path: ~/artifacts
-          destination: node-build
+      - persist_to_workspace:
+          root: ~/project
+          paths: .
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
@@ -66,10 +45,7 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - test-node
-      - build-node:
-          requires:
-            - test-node
+      - build_and_test
     # - deploy:
     #     requires:
     #       - build-node

@@ -7,16 +7,30 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DATABASE_HOST', 'localhost'),
-        port: configService.get('DATABASE_PORT', 5432),
-        username: configService.get('DATABASE_USER', 'postgres'),
-        password: configService.get('DATABASE_PASSWORD', 'postgres'),
-        database: configService.get('DATABASE_NAME', 'user_management'),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: configService.get('DATABASE_SYNC', true),
-      }),
+      useFactory: (configService: ConfigService) => {
+        // Use DATABASE_URL if available, otherwise fall back to individual configs
+        const url = configService.get<string>('DATABASE_URL');
+        if (url) {
+          return {
+            type: 'postgres' as const,
+            url,
+            entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+            synchronize: configService.get<boolean>('DATABASE_SYNC') || false,
+          };
+        }
+
+        // Fallback to individual connection parameters
+        return {
+          type: 'postgres' as const,
+          host: configService.get<string>('DATABASE_HOST'),
+          port: configService.get<number>('DATABASE_PORT'),
+          username: configService.get<string>('DATABASE_USER'),
+          password: configService.get<string>('DATABASE_PASSWORD'),
+          database: configService.get<string>('DATABASE_NAME'),
+          entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+          synchronize: configService.get<boolean>('DATABASE_SYNC') || false,
+        };
+      },
     }),
   ],
 })

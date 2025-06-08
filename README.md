@@ -52,7 +52,7 @@ COVERALLS_REPO_TOKEN=0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU npm run test:cov
 ## Techs
 
 - Nest: 11
-- Node: Node20.11.1
+- Node: v22.16.0
 - TypeORM
 - Postgres
 

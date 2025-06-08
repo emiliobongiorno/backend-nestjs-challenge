@@ -34,6 +34,12 @@ chmod 711 ./up_test.sh
 ./up_test.sh
 ```
 
+## How to run locally coveralls
+
+```
+COVERALLS_REPO_TOKEN=0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU npm run test:cov
+```
+
 ## Areas to improve
 
 - Data should be moved from tests to an external file
@@ -42,10 +48,6 @@ chmod 711 ./up_test.sh
 - A Seed migration would be useful to have an already working app with data
 - The ORM is being used with Synchronize instead of migrations. Migrations would be the best option
 - Deployment could be done
-
-## Errors to be fixed
-
-- Docker app is not running properly
 
 ## Techs
 

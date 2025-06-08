@@ -16,6 +16,7 @@ jobs:
           DATABASE_NAME: user_management_test
           DATABASE_SYNC: true
           POKEMON_API_URL: https://pokeapi.co/api/v2
+          COVERALLS_REPO_TOKEN: 0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU
       - image: cimg/postgres:15.0
         environment:
           POSTGRES_USER: postgres
@@ -28,7 +29,7 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: COVERALLS_REPO_TOKEN=0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU npm run test:cov
+          command: npm run test:cov
       - run:
           command: npm run build
       - persist_to_workspace:

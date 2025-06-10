@@ -51,8 +51,6 @@ COVERALLS_REPO_TOKEN=0odFzvVSUSJTqcPrD90UZNzJF3ipE13TU npm run test:cov
 - Data should be moved from tests to an external file
 - Generic method should be used to mock endpoints
 - Error handling could be improved (I.E handle already existing user error)
-- A Seed migration would be useful to have an already working app with data
-- The ORM is being used with Synchronize instead of migrations. Migrations would be the best option
 - Coveralls token should not be included in git
 
 ## Techs
